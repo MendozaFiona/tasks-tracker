@@ -1,10 +1,34 @@
-body.light {
-  .navbar-theme-light {
-    background-color: #a06d6d !important;
-    color: #000000;
+@use "@/styles/variables" as *;
 
-    .navbar-brand {
-      color: #333;
-    }
-  }
+body.light {
+  // background
+  --bg-main: #{$gray-neutral};
+  --bg-header: #{$white};
+  --bg-sidebar: #{$gray-light};
+  --bg-card: #{$white};
+
+  // text
+  --text-primary: #{$gray-charcoal};
+  --text-secondary: #{$gray-medium};
+  --text-hint: #{$gray-cool};
+
+  // button
+  --btn-primary: #{$blue};
+  --btn-secondary: #{$gray};
+  --btn-hover: #{$blue-dark};
+
+  // status
+  --status-cancelled: #{$red};
+  --status-completed: #{$green};
+  --status-wip: #{$orange-amber};
+  --status-todo: #{$gray-light};
+
+  // priority
+  --priority-high: #{$red};
+  --priority-medium: #{$orange-amber};
+  --priority-low: #{$gray-muted};
+
+  // border
+  --border-color: #{$gray};
+  --border-input-color: #{$blue};
 }

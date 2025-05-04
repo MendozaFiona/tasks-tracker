@@ -4,3 +4,12 @@
 // themes
 @use "@/styles/themes/light" as *;
 @use "@/styles/themes/dark" as *;
+
+.navbar-theme {
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+
+  .navbar-brand {
+    color: #333; // for dark: #ddd;
+  }
+}

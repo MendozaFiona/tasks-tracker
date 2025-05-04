@@ -6,7 +6,7 @@ const Header = () => {
   const { theme } = useTheme();
 
   return (
-    <Navbar className={`navbar-theme-${theme}`} expand="lg">
+    <Navbar className={`navbar-theme`} expand="lg">
       <Container fluid>
         <Navbar.Brand href="/">{APP_TITLE}</Navbar.Brand>
         <Nav className="ms-auto">
