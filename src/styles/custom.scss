@@ -48,3 +48,15 @@ body {
     color: var(--text-primary-button);
   }
 }
+
+.fm-page-content {
+  padding: 35px 45px;
+
+  .fm-filter-bar {
+    justify-self: flex-start;
+    gap: 60px;
+
+    font-weight: 500;
+    font-size: 16px;
+  }
+}

@@ -10,16 +10,11 @@ interface LayoutProps {
 const Layout: FC<LayoutProps> = ({ children }) => (
   <>
     <Header />
-    <Container fluid>
-      <Row>
-        <Col xs={2}>
-          <Navbar />
-        </Col>
-        <Col xs={10} className="p-4">
-          {children}
-        </Col>
-      </Row>
-    </Container>
+    <div className="d-flex">
+      <Navbar />
+
+      <div className="fm-page-content">{children}</div>
+    </div>
   </>
 );
 
