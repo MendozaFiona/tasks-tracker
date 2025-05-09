@@ -1,5 +1,5 @@
 import { FC, ReactNode } from "react";
-import Sidebar from "@/components/layout/Sidebar";
+import Navbar from "@/components/layout/Navbar";
 import Header from "@/components/layout/Header";
 import { Container, Row, Col } from "react-bootstrap";
 
@@ -13,7 +13,7 @@ const Layout: FC<LayoutProps> = ({ children }) => (
     <Container fluid>
       <Row>
         <Col xs={2}>
-          <Sidebar />
+          <Navbar />
         </Col>
         <Col xs={10} className="p-4">
           {children}

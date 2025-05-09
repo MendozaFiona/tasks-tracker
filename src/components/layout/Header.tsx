@@ -6,9 +6,11 @@ const Header = () => {
   const { theme } = useTheme();
 
   return (
-    <Navbar className={`navbar-theme`} expand="lg">
+    <Navbar className={`fm-header-theme`} expand="lg">
       <Container fluid>
-        <Navbar.Brand href="/">{APP_TITLE}</Navbar.Brand>
+        <Navbar.Brand className="text-uppercase fs-20px" href="/">
+          {APP_TITLE}
+        </Navbar.Brand>
         <Nav className="ms-auto">
           {/* only uncomment once login is enabled */}
           {/* <Nav.Link href="#profile">Profile</Nav.Link>

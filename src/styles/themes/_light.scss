@@ -4,13 +4,14 @@ body.light {
   // background
   --bg-main: #{$gray-neutral};
   --bg-header: #{$white};
-  --bg-sidebar: #{$gray-light};
+  --bg-navbar: #{$gray-light};
   --bg-card: #{$white};
 
   // text
   --text-primary: #{$gray-charcoal};
   --text-secondary: #{$gray-medium};
   --text-hint: #{$gray-cool};
+  --text-primary-button: #{$white};
 
   // button
   --btn-primary: #{$blue};
