@@ -12,6 +12,10 @@ body.dark {
   --text-secondary: #{$gray-light};
   --text-hint: #{$gray-muted};
 
+  // table
+  --table-bg-odd: #{$gray-darkest};
+  --table-bg-even: #{$gray-dark};
+
   // button
   --btn-primary: #{$blue};
   --btn-secondary: #{$gray-medium};

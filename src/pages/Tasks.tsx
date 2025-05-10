@@ -1,10 +1,11 @@
 import TaskFilter from "@/components/common/TaskFilter";
-import { Container } from "react-bootstrap";
+import { TaskList as NoneList } from "@/components/tasks/none/TaskList";
 
 const Tasks = () => {
   return (
     <div>
       <TaskFilter />
+      <NoneList />
     </div>
   );
 };

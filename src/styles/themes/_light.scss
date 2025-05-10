@@ -7,6 +7,10 @@ body.light {
   --bg-navbar: #{$gray-light};
   --bg-card: #{$white};
 
+  // table
+  --table-bg-odd: #{$gray-neutral};
+  --table-bg-even: #{$white};
+
   // text
   --text-primary: #{$gray-charcoal};
   --text-secondary: #{$gray-medium};
