@@ -69,6 +69,11 @@ body {
   margin-top: 35px;
 }
 
+.fm-badge,
+.fm-fs-14 {
+  font-size: 14px !important;
+}
+
 .fm-card {
   background-color: var(--bg-card);
   padding: 26px;
@@ -94,5 +99,20 @@ body {
     tr:nth-child(odd) > td {
       background-color: var(--table-bg-odd) !important;
     }
+
+    .fm-row-label {
+      color: var(--table-row-label);
+      opacity: 75%;
+    }
+
+    .fm-table-actions {
+      display: flex;
+      gap: 9px;
+    }
   }
+}
+
+.fm-secondary-icon i,
+.fm-secondary-icon span {
+  color: var(--text-hint);
 }

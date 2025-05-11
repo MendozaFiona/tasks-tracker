@@ -1,5 +1,8 @@
 import PriorityBadge from "@/components/tasks/badges/PriorityBadge";
+import StatusBadge from "@/components/tasks/badges/StatusBadge";
+import { ICONS } from "@/lib/constants/common";
 import { SAMPLE_TASKS } from "@/lib/constants/dummy";
+import { formatDateTime, formatDate } from "@/lib/helpers/date";
 import { Table } from "react-bootstrap";
 
 const TaskList = () => {
@@ -13,13 +16,32 @@ const TaskList = () => {
               <td>
                 <PriorityBadge priority={task.priority} />
               </td>
-              <td>{task.status}</td>
-              <td>Start: {task.start}</td>
-              <td>End: {task.end}</td>
-              <td>Deadline: {task.deadline}</td>
-              <td>Note: {task.note}</td>
-              <td>0 $</td>
-              <td>actions</td>
+              <td>
+                <StatusBadge status={task.status} />
+              </td>
+              <td className="fm-fs-14">
+                <span className="fm-row-label">Start:</span>{" "}
+                {formatDateTime(task.start)}
+              </td>
+              <td className="fm-fs-14">
+                <span className="fm-row-label">End:</span>{" "}
+                {formatDateTime(task.end)}
+              </td>
+              <td className="fm-fs-14">
+                <span className="fm-row-label">Deadline:</span>{" "}
+                {formatDate(task.deadline)}
+              </td>
+              <td className="fm-fs-14">
+                <span className="fm-row-label">Note:</span> {task.note}
+              </td>
+              <td className="fm-fs-14 fm-secondary-icon text-end">
+                <span>{task.attachmentCount}</span>{" "}
+                <i className={`bi bi-${ICONS.attachment}`} />
+              </td>
+              <td className="fm-table-actions">
+                <i className={`bi bi-${ICONS.edit}`} />
+                <i className={`bi bi-${ICONS.delete}`} />
+              </td>
             </tr>
           ))}
         </tbody>

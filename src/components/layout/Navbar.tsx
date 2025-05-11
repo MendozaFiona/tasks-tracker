@@ -8,7 +8,7 @@ const Navbar = () => (
       {SIDEBAR_MENUS.map((menu) => (
         <Nav.Link as={NavLink} key={menu.link} to={menu.link} end>
           <span> {menu.label}</span>
-          <i className={`bi bi-${menu.icon}`}></i>
+          <i className={`bi bi-${menu.icon}`} />
         </Nav.Link>
       ))}
     </Nav>

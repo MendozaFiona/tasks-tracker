@@ -26,12 +26,12 @@ const PriorityBadge: FC<PriorityBadgeProps> = ({ priority }) => {
 
   return (
     <div
-      className="d-flex align-items-center"
+      className="d-flex align-items-center fm-badge"
       style={{ color: details.color, gap: "5px" }}
     >
       <div
         className="rounded-circle"
-        style={{ background: details.color, width: "8px", height: "8px" }}
+        style={{ background: details.color, width: "10px", height: "10px" }}
       />
       {details.label}
     </div>

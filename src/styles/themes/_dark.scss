@@ -15,6 +15,7 @@ body.dark {
   // table
   --table-bg-odd: #{$gray-darkest};
   --table-bg-even: #{$gray-dark};
+  --table-row-label: #{$white};
 
   // button
   --btn-primary: #{$blue};

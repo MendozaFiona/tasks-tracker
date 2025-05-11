@@ -3,6 +3,15 @@ export const ICONS = {
   task: "sticky-fill",
   calendar: "calendar-fill",
   settings: "gear-fill",
+  todo: "hourglass-top",
+  inProgress: "hourglass-split",
+  completed: "hourglass-bottom",
+  cancelled: "hourglass",
+  attachment: "paperclip",
+  delete: "trash-fill",
+  edit: "pencil-fill",
+  add: "plus-circle-fill",
+  archive: "archive-full",
 };
 
 export const TASK_FILTERS = [

@@ -7,6 +7,7 @@ export type TaskType = {
   end?: string;
   deadline: string;
   note: string;
+  attachmentCount: number;
   // attachment: AttachmentType
 };
 
