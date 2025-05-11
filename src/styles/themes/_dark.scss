@@ -20,7 +20,12 @@ body.dark {
   // button
   --btn-primary: #{$blue};
   --btn-secondary: #{$gray-medium};
+  --btn-tertiary: #{$blue-light};
   --btn-hover: #{$blue-darker};
+
+  // button text
+  --btn-text-primary: #{$gray-charcoal};
+  --btn-text-secondary: #{$blue};
 
   // status
   --status-cancelled: #{$red};

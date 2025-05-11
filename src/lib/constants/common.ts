@@ -11,7 +11,9 @@ export const ICONS = {
   delete: "trash-fill",
   edit: "pencil-fill",
   add: "plus-circle-fill",
-  archive: "archive-full",
+  archive: "archive-fill",
+  check: "check-circle-fill",
+  x: "x-circle-fill",
 };
 
 export const TASK_FILTERS = [

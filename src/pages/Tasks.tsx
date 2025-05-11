@@ -1,4 +1,5 @@
-import TaskFilter from "@/components/common/TaskFilter";
+import TaskActions from "@/components/tasks/common/TaskActions";
+import TaskFilter from "@/components/tasks/common/TaskFilter";
 import { TaskList as NoneList } from "@/components/tasks/none/TaskList";
 
 const Tasks = () => {
@@ -6,6 +7,7 @@ const Tasks = () => {
     <div>
       <TaskFilter />
       <NoneList />
+      <TaskActions />
     </div>
   );
 };

@@ -21,7 +21,12 @@ body.light {
   // button
   --btn-primary: #{$blue};
   --btn-secondary: #{$gray};
+  --btn-tertiary: #{$blue-light};
   --btn-hover: #{$blue-dark};
+
+  // button text
+  --btn-text-primary: #{$white};
+  --btn-text-secondary: #{$blue};
 
   // status
   --status-cancelled: #{$red};

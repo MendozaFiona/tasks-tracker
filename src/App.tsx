@@ -1,7 +1,7 @@
 import "@/App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import "@/styles/custom.scss";
+import "@/styles/index.scss";
 
 import Layout from "@/components/layout/Layout";
 import { Outlet } from "react-router-dom";
