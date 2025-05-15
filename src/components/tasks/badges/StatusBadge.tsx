@@ -1,49 +1,30 @@
 import { gray, green, orange, red } from "@/lib/constants/colors";
-import { ICONS } from "@/lib/constants/common";
-import { TaskStatus } from "@/lib/types/tasks";
+import { ICONS, STATUS_OPTIONS } from "@/lib/constants/common";
+import { StatusOptionType, TaskStatus } from "@/lib/types/tasks";
 import { FC } from "react";
 
 interface StatusBadgeProps {
   status: TaskStatus;
+  details?: StatusOptionType;
 }
 
-const StatusBadge: FC<StatusBadgeProps> = ({ status }) => {
+const StatusBadge: FC<StatusBadgeProps> = ({ status, details }) => {
   const getDetails = () => {
-    switch (status) {
-      case TaskStatus.InProgress: {
-        return {
-          icon: ICONS.inProgress,
-          color: orange.amber,
-          label: "In Progress",
-        };
-      }
-      case TaskStatus.Completed: {
-        return {
-          icon: ICONS.completed,
-          color: green.base,
-          label: "Completed",
-        };
-      }
-      case TaskStatus.Cancelled: {
-        return { icon: ICONS.cancelled, color: red.base, label: "Cancelled" };
-      }
-      case TaskStatus.ToDo:
-      default: {
-        return { icon: ICONS.todo, color: gray.light, label: "To Do" };
-      }
-    }
+    const selectedStatus =
+      STATUS_OPTIONS.find((item) => item.value === status) || STATUS_OPTIONS[0];
+    return selectedStatus;
   };
 
-  const details = getDetails();
+  const _details = details || getDetails();
 
   return (
-    <div
+    <span
       className="d-flex align-items-center fm-badge"
-      style={{ color: details.color, gap: "5px" }}
+      style={{ color: _details.color, gap: "5px" }}
     >
-      <i className={`bi bi-${details.icon}`} />
-      <span>{details.label}</span>
-    </div>
+      <i className={`bi bi-${_details.icon}`} />
+      <span>{_details.label}</span>
+    </span>
   );
 };
 

@@ -1,40 +1,34 @@
 import { gray, orange, red } from "@/lib/constants/colors";
-import { TaskPriority } from "@/lib/types/tasks";
+import { PRIORITY_OPTIONS } from "@/lib/constants/common";
+import { PriorityOptionType, TaskPriority } from "@/lib/types/tasks";
 import { FC } from "react";
 
 interface PriorityBadgeProps {
   priority: TaskPriority;
+  details?: PriorityOptionType;
 }
 
-const PriorityBadge: FC<PriorityBadgeProps> = ({ priority }) => {
+const PriorityBadge: FC<PriorityBadgeProps> = ({ priority, details }) => {
   const getDetails = () => {
-    switch (priority) {
-      case TaskPriority.High: {
-        return { color: red.base, label: "High" };
-      }
-      case TaskPriority.Medium: {
-        return { color: orange.amber, label: "Medium" };
-      }
-      case TaskPriority.Low:
-      default: {
-        return { color: gray.medium, label: "Low" };
-      }
-    }
+    const selectedPriority =
+      PRIORITY_OPTIONS.find((item) => item.value === priority) ||
+      PRIORITY_OPTIONS[0];
+    return selectedPriority;
   };
 
-  const details = getDetails();
+  const _details = details || getDetails();
 
   return (
-    <div
+    <span
       className="d-flex align-items-center fm-badge"
-      style={{ color: details.color, gap: "5px" }}
+      style={{ color: _details.color, gap: "5px" }}
     >
-      <div
+      <span
         className="rounded-circle"
-        style={{ background: details.color, width: "10px", height: "10px" }}
+        style={{ background: _details.color, width: "10px", height: "10px" }}
       />
-      {details.label}
-    </div>
+      {_details.label}
+    </span>
   );
 };
 

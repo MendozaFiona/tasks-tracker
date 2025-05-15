@@ -206,3 +206,12 @@ body {
   border: 1px var(--border-color) solid;
   font-weight: 500;
 }
+
+.fm-form-control {
+  background-color: var(--bg-main);
+  border: 1px var(--border-color) solid;
+}
+
+.fm-input {
+  border-radius: 0;
+}

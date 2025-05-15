@@ -1,3 +1,11 @@
+import { gray, green, orange, red } from "@/lib/constants/colors";
+import {
+  PriorityOptionType,
+  StatusOptionType,
+  TaskPriority,
+  TaskStatus,
+} from "@/lib/types/tasks";
+
 export const ICONS = {
   home: "house-door-fill",
   task: "sticky-fill",
@@ -21,4 +29,37 @@ export const TASK_FILTERS = [
   { label: "by status", value: "status" },
   { label: "by priority", value: "priority" },
   { label: "by deadline", value: "deadline" },
+];
+
+export const PRIORITY_OPTIONS: PriorityOptionType[] = [
+  { color: red.base, label: "High", value: TaskPriority.High },
+  { color: orange.amber, label: "Medium", value: TaskPriority.Medium },
+  { color: gray.medium, label: "Low", value: TaskPriority.Low },
+];
+
+export const STATUS_OPTIONS: StatusOptionType[] = [
+  {
+    icon: ICONS.inProgress,
+    color: orange.amber,
+    label: "In Progress",
+    value: TaskStatus.InProgress,
+  },
+  {
+    icon: ICONS.completed,
+    color: green.base,
+    label: "Completed",
+    value: TaskStatus.Completed,
+  },
+  {
+    icon: ICONS.cancelled,
+    color: red.base,
+    label: "Cancelled",
+    value: TaskStatus.Cancelled,
+  },
+  {
+    icon: ICONS.todo,
+    color: gray.medium,
+    label: "To Do",
+    value: TaskStatus.ToDo,
+  },
 ];

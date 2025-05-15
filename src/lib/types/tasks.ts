@@ -11,6 +11,21 @@ export type TaskType = {
   // attachment: AttachmentType
 };
 
+type OptionType = {
+  label: string;
+};
+
+export type PriorityOptionType = OptionType & {
+  color: string;
+  value: TaskPriority;
+};
+
+export type StatusOptionType = OptionType & {
+  icon: string;
+  color: string;
+  value: TaskStatus;
+};
+
 // enum
 
 export enum TaskPriority {
