@@ -19,6 +19,7 @@ export const darkGray = {
 
 export const blue = {
   base: "#3b82f6",
+  light: "#cee1ff",
   dark: "#2563eb",
   darker: "#1e40af",
 };

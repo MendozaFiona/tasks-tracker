@@ -4,7 +4,7 @@ import {
   PRIORITY_OPTIONS,
   STATUS_OPTIONS,
 } from "@/lib/constants/common";
-import { Dispatch, FC, SetStateAction } from "react";
+import { Dispatch, FC, SetStateAction, useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import {
   CustomPriorityOption,
@@ -15,6 +15,9 @@ import {
   CustomStatusOption,
   CustomStatusSingleValue,
 } from "@/components/tasks/dropdown/StatusDropdown";
+import DatePicker from "react-datepicker";
+import FormAttachmentDisplay from "@/components/tasks/common/FormAttachmentDisplay";
+import { Controller, useForm } from "react-hook-form";
 
 interface AddTaskModalProps {
   isOpen: boolean;
@@ -22,8 +25,30 @@ interface AddTaskModalProps {
 }
 
 const AddTaskModal: FC<AddTaskModalProps> = ({ isOpen, setOpen }) => {
+  const localStatusOptions = STATUS_OPTIONS.filter(
+    (item) => !item.hideInOptions
+  );
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    watch,
+    setValue,
+    control,
+    formState: { errors },
+  } = useForm();
+
+  const shouldAlarm = watch("shouldAlarm");
+
   const handleClose = () => {
+    reset();
     setOpen(false);
+  };
+
+  const onSubmit = (data: any) => {
+    console.log(data);
+    // handleClose()
   };
 
   return (
@@ -34,36 +59,56 @@ const AddTaskModal: FC<AddTaskModalProps> = ({ isOpen, setOpen }) => {
       dialogClassName="fm-modal"
     >
       <Modal.Body>
-        <Form className="fm-form-content">
+        <Form
+          className="fm-form-content"
+          onSubmit={handleSubmit(onSubmit)}
+          noValidate
+        >
           <div className="d-flex" style={{ gap: "23px" }}>
             <Form.Control
               className="fm-input fm-form-control"
               type="text"
-              placeholder="Enter title"
+              placeholder="Enter Title"
+              {...register("title", { required: "Title is required" })}
+              isInvalid={!!errors.title}
             />
-            <Select
-              className="form-control fm p-0"
-              options={PRIORITY_OPTIONS}
-              // value={PRIORITY_OPTIONS.find((option) => option.value === value)}
-              // onChange={(selectedOption) => onChange(selectedOption.value)}
-              components={{
-                Option: CustomPriorityOption,
-                SingleValue: CustomPrioritySingleValue,
-              }}
-              styles={customStyles}
-              isSearchable={false}
+
+            <Controller
+              name="priority"
+              control={control}
+              defaultValue={PRIORITY_OPTIONS[0]}
+              render={({ field }) => (
+                <Select
+                  {...field}
+                  options={PRIORITY_OPTIONS}
+                  components={{
+                    Option: CustomPriorityOption,
+                    SingleValue: CustomPrioritySingleValue,
+                  }}
+                  styles={customStyles}
+                  className="form-control fm p-0"
+                  isSearchable={false}
+                />
+              )}
             />
-            <Select
-              className="form-control fm p-0"
-              options={STATUS_OPTIONS}
-              // value={STATUS_OPTIONS.find((option) => option.value === value)}
-              // onChange={(selectedOption) => onChange(selectedOption.value)}
-              components={{
-                Option: CustomStatusOption,
-                SingleValue: CustomStatusSingleValue,
-              }}
-              styles={customStyles}
-              isSearchable={false}
+
+            <Controller
+              name="status"
+              control={control}
+              defaultValue={localStatusOptions[0]}
+              render={({ field }) => (
+                <Select
+                  {...field}
+                  options={localStatusOptions}
+                  components={{
+                    Option: CustomStatusOption,
+                    SingleValue: CustomStatusSingleValue,
+                  }}
+                  styles={customStyles}
+                  className="form-control fm p-0"
+                  isSearchable={false}
+                />
+              )}
             />
           </div>
 
@@ -71,46 +116,98 @@ const AddTaskModal: FC<AddTaskModalProps> = ({ isOpen, setOpen }) => {
             className="fm-input fm-form-control"
             as="textarea"
             rows={3}
-            placeholder="Enter note"
+            placeholder="Enter Note"
+            {...register("note")}
+            isInvalid={!!errors.note}
           />
 
-          {/* temporary, use date time picker */}
           <div className="d-flex fm-gap-20 align-items-center">
-            <Form.Control
-              className="fm-form-control"
-              type="text"
-              placeholder="Deadline"
-            />
+            <div className="fm-datepicker">
+              <Controller
+                name="deadline"
+                control={control}
+                defaultValue={null}
+                render={({ field }) => (
+                  <DatePicker
+                    {...field}
+                    selected={field.value}
+                    onChange={(date) => field.onChange(date)}
+                    placeholderText="Deadline"
+                    showTimeSelect
+                    dateFormat="Pp"
+                    className="form-control fm-form-control"
+                  />
+                )}
+              />
+            </div>
 
-            <Form.Control
-              className="fm-form-control"
-              type="text"
-              placeholder="Start Time"
-            />
+            <div className="fm-datepicker">
+              <Controller
+                name="startDate"
+                control={control}
+                defaultValue={null}
+                render={({ field }) => (
+                  <DatePicker
+                    {...field}
+                    selected={field.value}
+                    onChange={(date) => field.onChange(date)}
+                    placeholderText="Start Date"
+                    showTimeSelect
+                    dateFormat="Pp"
+                    className="form-control fm-form-control"
+                    disabled={!shouldAlarm}
+                  />
+                )}
+              />
+            </div>
 
-            <Form.Control
-              className="fm-form-control"
-              type="text"
-              placeholder="End Time"
-            />
+            <div className="fm-datepicker">
+              <Controller
+                name="endDate"
+                control={control}
+                defaultValue={null}
+                render={({ field }) => (
+                  <DatePicker
+                    {...field}
+                    selected={field.value}
+                    onChange={(date) => field.onChange(date)}
+                    placeholderText="End Date"
+                    showTimeSelect
+                    dateFormat="Pp"
+                    className="form-control fm-form-control"
+                    disabled={!shouldAlarm}
+                  />
+                )}
+              />
+            </div>
 
-            <Form.Check
-              type="switch"
-              id="custom-switch"
-              // checked={enabled}
-              // onChange={(e) => setEnabled(e.target.checked)}
+            <Controller
+              name="shouldAlarm"
+              control={control}
+              defaultValue={false}
+              render={({ field }) => (
+                <Form.Check
+                  type="switch"
+                  id="custom-switch"
+                  checked={field.value}
+                  onChange={(checked) => {
+                    if (field.value) {
+                      setValue("endDate", null);
+                      setValue("startDate", null);
+                    }
+                    field.onChange(checked);
+                  }}
+                />
+              )}
             />
           </div>
 
-          <div className="d-flex fm-gap-30">
-            {/* placeholder for attachment display */}
-            <Form.Control
-              className="fm-input fm-form-control"
-              as="textarea"
-              rows={2}
-              placeholder="Attachment Area"
-            />
-            <Button className="fm-button-tertiary text-nowrap fm-fs-14 fm-max-h-36">
+          <div className="d-flex fm-gap-30 justify-content-between">
+            <FormAttachmentDisplay />
+            <Button
+              variant="outline-primary"
+              className="fm-button-tertiary text-nowrap fm-fs-14 fm-max-h-36"
+            >
               Add Attachment
             </Button>
           </div>
@@ -126,14 +223,16 @@ const AddTaskModal: FC<AddTaskModalProps> = ({ isOpen, setOpen }) => {
             </div>
             <div className="d-flex fm-gap-42">
               <Button
+                variant="secondary"
                 className="fm-button-secondary fm-w-140"
                 onClick={handleClose}
               >
                 Cancel
               </Button>
               <Button
+                type="submit"
+                variant="primary"
                 className="fm-button-primary fm-w-140"
-                onClick={handleClose}
               >
                 Save
               </Button>

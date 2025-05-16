@@ -1,6 +1,7 @@
 import "@/App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import "react-datepicker/dist/react-datepicker.css";
 import "@/styles/index.scss";
 
 import Layout from "@/components/layout/Layout";

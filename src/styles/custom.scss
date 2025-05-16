@@ -172,11 +172,13 @@ body {
   }
 }
 
-.fm-completed i {
+.fm-completed i,
+.fm-completed:hover {
   color: var(--status-completed);
 }
 
-.fm-cancelled i {
+.fm-cancelled i,
+.fm-cancelled:hover {
   color: var(--status-cancelled);
 }
 
@@ -207,11 +209,25 @@ body {
   font-weight: 500;
 }
 
-.fm-form-control {
+.fm-form-control,
+.fm-attachment-section {
   background-color: var(--bg-main);
   border: 1px var(--border-color) solid;
 }
 
+.fm-attachment-section {
+  width: 100%;
+  min-height: 68px;
+}
+
 .fm-input {
   border-radius: 0;
+}
+
+.fm-datepicker {
+  width: 100%;
+
+  .react-datepicker-wrapper {
+    width: 100%;
+  }
 }

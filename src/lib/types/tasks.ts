@@ -24,6 +24,7 @@ export type StatusOptionType = OptionType & {
   icon: string;
   color: string;
   value: TaskStatus;
+  hideInOptions?: boolean;
 };
 
 // enum

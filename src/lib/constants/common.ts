@@ -32,9 +32,9 @@ export const TASK_FILTERS = [
 ];
 
 export const PRIORITY_OPTIONS: PriorityOptionType[] = [
-  { color: red.base, label: "High", value: TaskPriority.High },
-  { color: orange.amber, label: "Medium", value: TaskPriority.Medium },
   { color: gray.medium, label: "Low", value: TaskPriority.Low },
+  { color: orange.amber, label: "Medium", value: TaskPriority.Medium },
+  { color: red.base, label: "High", value: TaskPriority.High },
 ];
 
 export const STATUS_OPTIONS: StatusOptionType[] = [
@@ -49,12 +49,14 @@ export const STATUS_OPTIONS: StatusOptionType[] = [
     color: green.base,
     label: "Completed",
     value: TaskStatus.Completed,
+    hideInOptions: true,
   },
   {
     icon: ICONS.cancelled,
     color: red.base,
     label: "Cancelled",
     value: TaskStatus.Cancelled,
+    hideInOptions: true,
   },
   {
     icon: ICONS.todo,
