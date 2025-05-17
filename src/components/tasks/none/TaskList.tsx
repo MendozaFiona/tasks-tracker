@@ -3,14 +3,21 @@ import StatusBadge from "@/components/tasks/badges/StatusBadge";
 import { ICONS } from "@/lib/constants/common";
 import { SAMPLE_TASKS } from "@/lib/constants/dummy";
 import { formatDateTime, formatDate } from "@/lib/helpers/date";
+import { useLocalStorage } from "@/lib/hooks/useLocalStorage";
+import { TaskType } from "@/lib/types/tasks";
 import { Table } from "react-bootstrap";
 
 const TaskList = () => {
+  // TODO: temporary fetch tasks
+  const [tasks, setTasks] = useLocalStorage<TaskType[]>("tasks", []);
+
+  console.log(tasks);
+
   return (
     <div className="fm-mt-35 fm-card fm-group-by-none">
       <Table className="fm-table" responsive>
         <tbody>
-          {SAMPLE_TASKS?.map((task) => (
+          {tasks?.map((task) => (
             <tr key={task.id}>
               <td>{task.name}</td>
               <td>

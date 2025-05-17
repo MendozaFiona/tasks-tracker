@@ -1,3 +1,5 @@
+import { FileWithPreview } from "@/lib/types/common";
+
 export type TaskType = {
   id: string;
   name: string;
@@ -8,7 +10,7 @@ export type TaskType = {
   deadline: string;
   note: string;
   attachmentCount: number;
-  // attachment: AttachmentType
+  attachments: FileWithPreview[];
 };
 
 type OptionType = {

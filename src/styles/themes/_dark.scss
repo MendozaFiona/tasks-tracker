@@ -33,6 +33,9 @@ body.dark {
   --status-wip: #{$orange-amber};
   --status-todo: #{$gray-medium};
 
+  // attachment
+  --remove-attachment: #{$red};
+
   // priority
   --priority-high: #{$red};
   --priority-medium: #{$orange-amber};

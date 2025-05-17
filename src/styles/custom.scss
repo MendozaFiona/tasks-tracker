@@ -202,6 +202,10 @@ body {
   border-radius: 10px;
 }
 
+.fm-text-secondary {
+  color: var(--text-secondary);
+}
+
 .fm-button-tertiary {
   background-color: var(--btn-tertiary);
   color: var(--text-primary);
@@ -217,7 +221,7 @@ body {
 
 .fm-attachment-section {
   width: 100%;
-  min-height: 68px;
+  min-height: 90px;
   padding: 5px;
   display: flex;
   justify-content: flex-start;
@@ -228,7 +232,16 @@ body {
     flex-direction: column;
     align-items: center;
     width: 66px;
+    position: relative;
   }
+
+  .fm-attachment-delete {
+    color: var(--remove-attachment);
+  }
+}
+
+.fm-icon {
+  cursor: pointer;
 }
 
 .fm-input {

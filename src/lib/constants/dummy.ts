@@ -11,6 +11,7 @@ export const SAMPLE_TASKS: TaskType[] = [
     deadline: "2025-05-10T14:30:00Z",
     note: "Do not do this late",
     attachmentCount: 2,
+    attachments: [],
   },
   {
     id: "task-2",
@@ -22,5 +23,6 @@ export const SAMPLE_TASKS: TaskType[] = [
     deadline: "2025-05-10T14:30:00Z",
     note: "Do not do this late",
     attachmentCount: 0,
+    attachments: [],
   },
 ];

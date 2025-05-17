@@ -27,6 +27,8 @@ import FormAttachmentDisplay from "@/components/tasks/common/FormAttachmentDispl
 import { Controller, useForm } from "react-hook-form";
 import { useDropzone } from "react-dropzone";
 import { FileWithPreview } from "@/lib/types/common";
+import { useLocalStorage } from "@/lib/hooks/useLocalStorage";
+import { TaskType } from "@/lib/types/tasks";
 
 interface AddTaskModalProps {
   isOpen: boolean;
@@ -54,6 +56,9 @@ const AddTaskModal: FC<AddTaskModalProps> = ({ isOpen, setOpen }) => {
 
   const [attachments, setAttachments] = useState<FileWithPreview[]>([]);
 
+  // TODO: temporary save
+  const [tasks, setTasks] = useLocalStorage<TaskType[]>("tasks", []);
+
   const onDrop = useCallback((acceptedFiles: File[]) => {
     const newAttachments = acceptedFiles.map((file) =>
       Object.assign(file, {
@@ -78,7 +83,15 @@ const AddTaskModal: FC<AddTaskModalProps> = ({ isOpen, setOpen }) => {
 
   const onSubmit = (data: any) => {
     console.log(data);
-    // handleClose()
+
+    try {
+      const newTasks = [...tasks, data];
+
+      setTasks(newTasks);
+      handleClose();
+    } catch (error) {
+      console.error("Something went wrong:", error);
+    }
   };
 
   return (
@@ -236,7 +249,10 @@ const AddTaskModal: FC<AddTaskModalProps> = ({ isOpen, setOpen }) => {
             {...getRootProps()}
             className="d-flex fm-gap-30 justify-content-between"
           >
-            <FormAttachmentDisplay files={attachments} />
+            <FormAttachmentDisplay
+              files={attachments}
+              setFiles={setAttachments}
+            />
             <div className="d-inline-block">
               <input {...getInputProps()} ref={dropzoneRef} />
               <Button
