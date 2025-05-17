@@ -4,7 +4,14 @@ import {
   PRIORITY_OPTIONS,
   STATUS_OPTIONS,
 } from "@/lib/constants/common";
-import { Dispatch, FC, SetStateAction, useState } from "react";
+import {
+  Dispatch,
+  FC,
+  SetStateAction,
+  useCallback,
+  useRef,
+  useState,
+} from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import {
   CustomPriorityOption,
@@ -18,6 +25,8 @@ import {
 import DatePicker from "react-datepicker";
 import FormAttachmentDisplay from "@/components/tasks/common/FormAttachmentDisplay";
 import { Controller, useForm } from "react-hook-form";
+import { useDropzone } from "react-dropzone";
+import { FileWithPreview } from "@/lib/types/common";
 
 interface AddTaskModalProps {
   isOpen: boolean;
@@ -41,8 +50,29 @@ const AddTaskModal: FC<AddTaskModalProps> = ({ isOpen, setOpen }) => {
 
   const shouldAlarm = watch("shouldAlarm");
 
+  const dropzoneRef = useRef<HTMLInputElement>(null);
+
+  const [attachments, setAttachments] = useState<FileWithPreview[]>([]);
+
+  const onDrop = useCallback((acceptedFiles: File[]) => {
+    const newAttachments = acceptedFiles.map((file) =>
+      Object.assign(file, {
+        preview: URL.createObjectURL(file),
+        id: crypto.randomUUID(),
+      })
+    );
+
+    setAttachments((prev) => [...prev, ...newAttachments]);
+  }, []);
+
+  const { getInputProps, getRootProps } = useDropzone({
+    onDrop,
+    noClick: true,
+  });
+
   const handleClose = () => {
     reset();
+    setAttachments([]);
     setOpen(false);
   };
 
@@ -202,14 +232,21 @@ const AddTaskModal: FC<AddTaskModalProps> = ({ isOpen, setOpen }) => {
             />
           </div>
 
-          <div className="d-flex fm-gap-30 justify-content-between">
-            <FormAttachmentDisplay />
-            <Button
-              variant="outline-primary"
-              className="fm-button-tertiary text-nowrap fm-fs-14 fm-max-h-36"
-            >
-              Add Attachment
-            </Button>
+          <div
+            {...getRootProps()}
+            className="d-flex fm-gap-30 justify-content-between"
+          >
+            <FormAttachmentDisplay files={attachments} />
+            <div className="d-inline-block">
+              <input {...getInputProps()} ref={dropzoneRef} />
+              <Button
+                variant="outline-primary"
+                className="fm-button-tertiary text-nowrap fm-fs-14 fm-max-h-36"
+                onClick={() => dropzoneRef.current?.click()}
+              >
+                Add Attachment
+              </Button>
+            </div>
           </div>
 
           <div className="d-flex justify-content-between">

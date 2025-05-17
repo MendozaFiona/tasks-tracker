@@ -218,6 +218,17 @@ body {
 .fm-attachment-section {
   width: 100%;
   min-height: 68px;
+  padding: 5px;
+  display: flex;
+  justify-content: flex-start;
+  gap: 5px;
+
+  .fm-attachment-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 66px;
+  }
 }
 
 .fm-input {

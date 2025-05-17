@@ -6,7 +6,7 @@ import {
   TaskStatus,
 } from "@/lib/types/tasks";
 
-export const ICONS = {
+export const ICONS: Record<string, string> = {
   home: "house-door-fill",
   task: "sticky-fill",
   calendar: "calendar-fill",
@@ -22,6 +22,26 @@ export const ICONS = {
   archive: "archive-fill",
   check: "check-circle-fill",
   x: "x-circle-fill",
+};
+
+export const FILE_ICONS: Record<string, string> = {
+  pdf: "file-earmark-pdf",
+  doc: "file-earmark-word",
+  docx: "file-earmark-word",
+  xls: "file-earmark-excel",
+  xlsx: "file-earmark-excel",
+  ppt: "file-earmark-ppt",
+  pptx: "file-earmark-ppt",
+  jpg: "file-earmark-image",
+  jpeg: "file-earmark-image",
+  png: "file-earmark-image",
+  gif: "file-earmark-image",
+  txt: "file-earmark-text",
+  zip: "file-earmark-zip",
+  rar: "file-earmark-zip",
+  csv: "file-earmark-spreadsheet",
+  mp4: "file-earmark-play",
+  mp3: "file-earmark-music",
 };
 
 export const TASK_FILTERS = [
